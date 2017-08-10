@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :cocktails, except: [:destroy]
   resources :doses, only: [:destroy]
+  root "cocktails#index"
 
   # get "cocktails", to: "cocktails#index"
   # get "cocktails/:id", to: "cocktails#show"
