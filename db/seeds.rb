@@ -18,6 +18,6 @@ end
 
 ###You can upload IMAGES from a URL.
 url = "http://static.giantbomb.com/uploads/original/9/99864/2419866-nes_console_set.png"
-product = cocktail.new(name: 'NES')
+product = Cocktail.new(name: 'NES')
 product.remote_photo_url = url
 product.save
