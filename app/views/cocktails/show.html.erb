@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),  url('<%= cl_image_path @cocktail.photo, height: 300, width: 400, crop: :fill %>')">
         <% @cocktail.doses.each do |dose| %>
         <div class="card-category"><%= dose.amount %></div>
         <% end %>
@@ -12,28 +12,21 @@
           <% end %>
         </div>
         <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+
         <%= link_to "", cocktail_path(@cocktail), class: "card-link" %>
 
-        <!-- app/views/products/show.html.erb -->
-<%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
       </div>
     </div>
   </div>
 </div>
 
 
-###############NOTES FROM LE WAGON LECTURE################
-<!-- app/views/products/show.html.erb
-<%= cl_image_tag @product.photo, height: 300, width: 400, crop: :fill %> -->
-
-<!-- app/views/products/show.html.erb -->
-<%= image_tag @cocktail.photo.url(:bright_face) %>
 
 
 <ul>
   <% @cocktail.doses.each do |dose| %>
-  <%= does.description %> of <%= link_to dose.ingredient.name, ingredient_path(dose.ingredient) %>
-  <li><%= does.description %> of <%= dose.ingredient.name %></li>
+  <%= dose.description %> of <%= link_to dose.ingredient.name, ingredient_path(dose.ingredient) %>
+  <li><%= dose.description %> of <%= dose.ingredient.name %></li>
   <%= link_to "delete", cocktail_dose_path(@cocktail, dose), method: :delete %>
   <% end %>
 </ul>
@@ -42,14 +35,14 @@
 
 <% if @dose.errors.any? %>
 <ul>
-  <% @does.errors.full_message.each do |message| %>
+  <% @dose.errors.full_message.each do |message| %>
   <li><%= message %></li>
   <% end %>
 </ul>
 <% end %>
 <%= f.input :description, placeholder: "2 teaspoons" %>
 <%= f.input :ingredient_id, collection: Ingredient.all, prompt: "Choose One" %>
-<%= f.submit "Add dose" class: "btn btn-primary" %>
+<%= f.submit "Add dose", class: "btn btn-primary" %>
 <% end %>
 
 
