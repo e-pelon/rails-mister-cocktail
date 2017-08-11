@@ -30,6 +30,28 @@
 <%= image_tag @cocktail.photo.url(:bright_face) %>
 
 
+<ul>
+  <% @cocktail.doses.each do |dose| %>
+  <%= does.description %> of <%= link_to dose.ingredient.name, ingredient_path(dose.ingredient) %>
+  <li><%= does.description %> of <%= dose.ingredient.name %></li>
+  <%= link_to "delete", cocktail_dose_path(@cocktail, dose), method: :delete %>
+  <% end %>
+</ul>
+
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+
+<% if @dose.errors.any? %>
+<ul>
+  <% @does.errors.full_message.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+<%= f.input :description, placeholder: "2 teaspoons" %>
+<%= f.input :ingredient_id, collection: Ingredient.all, prompt: "Choose One" %>
+<%= f.submit "Add dose" class: "btn btn-primary" %>
+<% end %>
+
 
 
 
